@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Películas</h1>
+        {% for movie in movies %}
+            <div class="movie">
+                <h2>{{ movie.title }}</h2>
+                <p><strong>Año:</strong> {{ movie.year }}</p>
+                <p>{{ movie.plot }}</p>
+            </div>
+        {% endfor %}
+
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="/?page={{ current_page - 1 }}">Anterior</a>
+            {% endif %}
+            <span>Página {{ current_page }}</span>
+            <a href="/?page={{ current_page + 1 }}">Siguiente</a>
+        </div>
+    </div>
+</body>
+</html>
